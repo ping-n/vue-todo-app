@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <b-container id="app">
     <h1>{{ title }}</h1>
     <TodoList :todos="todos" @delete-todo="deleteTodo" />
     <AddTodo v-on:add-todo="addTodo" />
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -45,11 +45,24 @@ export default {
   },
   methods: {
     addTodo(newTodoObj) {
-      this.todos = [...this.todos, newTodoObj]
+      this.todos = [...this.todos, newTodoObj];
     },
     deleteTodo(todoId) {
-      this.todos = this.todos.filter(todo => todo.id !== todoId);
-    }
+      this.todos = this.todos.filter((todo) => todo.id !== todoId);
+    },
+  },
+  mounted() {
+    console.log("App mounted!");
+    if (localStorage.getItem("todos"))
+      this.todos = JSON.parse(localStorage.getItem("todos"));
+  },
+  watch: {
+    todos: {
+      handler() {
+        localStorage.setItem("todos", JSON.stringify(this.todos));
+      },
+      deep: true,
+    },
   },
 };
 </script>

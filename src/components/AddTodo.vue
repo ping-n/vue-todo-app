@@ -1,10 +1,10 @@
 <template>
-  <div class="add-todo">
-    <form @submit.prevent="addTodo">
-      <input type="text" name="task" v-model="task" />
-      <button type="submit">Add</button>
-    </form>
-  </div>
+  <b-container class="add-todo">
+      <b-form @submit.prevent="addTodo">
+        <b-form-input type="text" name="task" v-model="task" />
+        <b-button type="submit">Add</b-button>
+      </b-form>
+  </b-container>
 </template>
 
 <script>

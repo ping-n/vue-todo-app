@@ -1,12 +1,12 @@
 <template>
-  <div class="todo">
+  <b-container class="todo">
     <h2>Current ToDo list:</h2>
-    <ul>
-      <li :key="todo.id" v-for="todo in todos" >
+    <b-list-group>
+      <b-list-group-item :key="todo.id" v-for="todo in todos" >
         <Todo :todo="todo" v-on:delete-todo="$emit('delete-todo', todo.id)"/>
-      </li>
-    </ul>
-  </div>
+      </b-list-group-item>
+    </b-list-group>
+  </b-container>
 </template>
 
 <script>
