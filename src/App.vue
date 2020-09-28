@@ -1,22 +1,55 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
-    <TodoList />
+    <TodoList :todos="todos" @delete-todo="deleteTodo" />
+    <AddTodo v-on:add-todo="addTodo" />
   </div>
 </template>
 
 <script>
-import TodoList from "@/components/TodoList ";
+import TodoList from "@/components/TodoList";
+import AddTodo from "@/components/AddTodo";
+import moment from "moment";
+import shortid from "shortid";
 
 export default {
   name: "App",
   components: {
-    TodoList
+    TodoList,
+    AddTodo,
   },
   data() {
     return {
-      title: "ToDo App",
+      title: "Todo App",
+      todos: [
+        {
+          id: shortid.generate(),
+          task: "Learn Vue",
+          date: moment().format("ll"),
+          completed: false,
+        },
+        {
+          id: shortid.generate(),
+          task: "Learn Vuex",
+          date: moment().format("ll"),
+          completed: false,
+        },
+        {
+          id: shortid.generate(),
+          task: "Make App",
+          date: moment().format("ll"),
+          completed: false,
+        },
+      ],
     };
+  },
+  methods: {
+    addTodo(newTodoObj) {
+      this.todos = [...this.todos, newTodoObj]
+    },
+    deleteTodo(todoId) {
+      this.todos = this.todos.filter(todo => todo.id !== todoId);
+    }
   },
 };
 </script>
