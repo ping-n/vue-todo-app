@@ -1,6 +1,5 @@
 <template>
   <b-container class="todo">
-    <h2>Current ToDo list:</h2>
     <b-list-group>
       <b-list-group-item :key="todo.id" v-for="todo in todos">
         <Todo

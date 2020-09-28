@@ -1,12 +1,12 @@
 <template>
   <b-container class="add-todo">
     <b-form @submit.prevent="addTodo">
-      <b-form-input type="text" name="task" v-model="task" />
-      <b-button type="submit">Add</b-button>
+      <b-form-input type="text" name="task" v-model="task" placeholder="Add a todo"/>
       <b-alert v-if="alert" show variant="danger"> {{this.alert}} </b-alert>
     </b-form>
   </b-container>
 </template>
+
 
 <script>
 import moment from "moment";

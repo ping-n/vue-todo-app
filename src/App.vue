@@ -1,8 +1,8 @@
 <template>
   <b-container id="app">
     <h1>{{ title }}</h1>
-    <TodoList :todos="todos" @delete-todo="deleteTodo" />
     <AddTodo v-on:add-todo="addTodo" />
+    <TodoList :todos="todos" @delete-todo="deleteTodo" />
   </b-container>
 </template>
 
