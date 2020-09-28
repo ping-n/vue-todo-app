@@ -1,9 +1,10 @@
 <template>
   <b-container class="add-todo">
-      <b-form @submit.prevent="addTodo">
-        <b-form-input type="text" name="task" v-model="task" />
-        <b-button type="submit">Add</b-button>
-      </b-form>
+    <b-form @submit.prevent="addTodo">
+      <b-form-input type="text" name="task" v-model="task" />
+      <b-button type="submit">Add</b-button>
+      <b-alert v-if="alert" show variant="danger"> {{this.alert}} </b-alert>
+    </b-form>
   </b-container>
 </template>
 
@@ -16,18 +17,24 @@ export default {
   data() {
     return {
       task: "",
+      alert: "",
     };
   },
   methods: {
     addTodo() {
-      const newTodoObj = {
-        id: shortid.generate(),
-        task: this.task,
-        date: moment().format("ll"),
-        completed: false,
-      };
-      this.$emit("add-todo", newTodoObj);
-      this.task = "";
+      if (this.task.length > 0) {
+        const newTodoObj = {
+          id: shortid.generate(),
+          task: this.task,
+          date: moment().format("ll"),
+          completed: false,
+        };
+        this.$emit("add-todo", newTodoObj);
+        this.alert = "";
+        this.task = "";
+      } else {
+        this.alert = "Please input a task"
+      }
     },
   },
 };

@@ -52,9 +52,9 @@ export default {
     },
   },
   mounted() {
-    console.log("App mounted!");
-    if (localStorage.getItem("todos"))
+    if (localStorage.getItem("todos")) {
       this.todos = JSON.parse(localStorage.getItem("todos"));
+    }
   },
   watch: {
     todos: {
